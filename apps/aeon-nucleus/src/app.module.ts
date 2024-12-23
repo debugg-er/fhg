@@ -20,6 +20,7 @@ import { ExampleModule } from './domain/example/example.module'
       inject: [ConfigService],
       useFactory: (configService: TConfigService) => ({
         url: configService.get('KEYCLOAK_URL'),
+        realmName: configService.get('KEYCLOAK_REALM_NAME'),
         clientId: configService.get('KEYCLOAK_CLIENT_ID'),
         clientSecret: configService.get('KEYCLOAK_CLIENT_SECRET'),
       }),

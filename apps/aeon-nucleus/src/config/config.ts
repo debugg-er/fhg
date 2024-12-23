@@ -5,9 +5,11 @@ import { ConfigService } from '@nestjs/config'
 dotenv.config()
 
 const appConfigSchema = z.object({
-  NODE_ENV: z.enum(['development', 'production']).default('development'),
   PORT: z.coerce.number().default(8080),
+  NODE_ENV: z.enum(['development', 'production']).default('development'),
+
   KEYCLOAK_URL: z.string().min(1),
+  KEYCLOAK_REALM_NAME: z.string().min(1),
   KEYCLOAK_CLIENT_ID: z.string().min(1),
   KEYCLOAK_CLIENT_SECRET: z.string().min(1),
 })

@@ -4,6 +4,7 @@ export const KEYCLOAK_STRATEGY_CONFIG_TOKEN = Symbol('KEYCLOAK_STRATEGY_CONFIG_T
 
 export type TKeycloakStrategyOptions = {
   url: string
+  realmName: string
   clientId: string
   clientSecret: string
 }

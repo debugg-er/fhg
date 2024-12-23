@@ -13,6 +13,7 @@ export class KeyCloakStrategy extends PassportStrategy(Strategy, 'keycloak') {
     private readonly _options: TKeycloakStrategyOptions,
   ) {
     super()
+    console.log(_options)
   }
 
   async validate(_: Request): Promise<any> {
