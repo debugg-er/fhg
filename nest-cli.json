@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/aeon-partner/src",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "webpack": true,
+    "tsConfigPath": "apps/aeon-partner/tsconfig.app.json"
+  },
+  "projects": {
+    "shared": {
+      "type": "library",
+      "root": "libs/shared",
+      "entryFile": "index",
+      "sourceRoot": "libs/shared/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/shared/tsconfig.lib.json"
+      }
+    },
+    "aeon-partner": {
+      "type": "application",
+      "root": "apps/aeon-partner",
+      "entryFile": "main",
+      "sourceRoot": "apps/aeon-partner/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/aeon-partner/tsconfig.app.json"
+      }
+    }
+  },
+  "monorepo": true,
+  "root": "apps/aeon-partner"
+}
+
