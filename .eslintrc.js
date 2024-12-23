@@ -18,7 +18,7 @@ module.exports = {
         '@typescript-eslint/explicit-function-return-type': 'off',
         '@typescript-eslint/explicit-module-boundary-types': 'off',
         '@typescript-eslint/no-explicit-any': 'off',
-        indent: ['error', 2, { SwitchCase: 1, ignoredNodes: ['PropertyDefinition'] }],
+        // indent: ['error', 2, { SwitchCase: 1, ignoredNodes: ['PropertyDefinition'] }],
         '@typescript-eslint/no-namespace': 'off',
         '@typescript-eslint/no-non-null-assertion': 'off',
         '@typescript-eslint/no-unused-vars': [

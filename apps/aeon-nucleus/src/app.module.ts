@@ -2,11 +2,12 @@ import { Module, ValidationPipe } from '@nestjs/common'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { APP_FILTER, APP_PIPE } from '@nestjs/core'
 
-import { ClientExceptionFilter, KeycloakModule, UnknownExceptionFilter } from '@lib/shared'
+import { ClientExceptionFilter, KeycloakModule, KnexModule, UnknownExceptionFilter } from '@lib/shared'
 
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { configuration, TConfigService } from './config/config'
+import { DbConnection } from './constant/knex'
 import { ExampleModule } from './domain/example/example.module'
 
 @Module({
@@ -23,6 +24,17 @@ import { ExampleModule } from './domain/example/example.module'
         realmName: configService.get('KEYCLOAK_REALM_NAME'),
         clientId: configService.get('KEYCLOAK_CLIENT_ID'),
         clientSecret: configService.get('KEYCLOAK_CLIENT_SECRET'),
+      }),
+    }),
+    KnexModule.registerAsync({
+      connectionName: DbConnection.SAS_MARIADB,
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: TConfigService) => ({
+        client: 'mysql2',
+        connection: {
+          uri: configService.get('MARIADB_URI'),
+        },
       }),
     }),
 
