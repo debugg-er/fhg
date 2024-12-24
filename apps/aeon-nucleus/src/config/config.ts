@@ -14,6 +14,7 @@ const appConfigSchema = z.object({
   KEYCLOAK_CLIENT_SECRET: z.string().min(1),
 
   MARIADB_URI: z.string().url().min(1),
+  MONGODB_URI: z.string().url().min(1),
 })
 
 export type AppConfig = z.infer<typeof appConfigSchema>

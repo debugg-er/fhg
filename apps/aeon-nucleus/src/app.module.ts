@@ -1,6 +1,7 @@
 import { Module, ValidationPipe } from '@nestjs/common'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { APP_FILTER, APP_PIPE } from '@nestjs/core'
+import { MongooseModule } from '@nestjs/mongoose'
 
 import { ClientExceptionFilter, KeycloakModule, KnexModule, UnknownExceptionFilter } from '@lib/shared'
 
@@ -35,6 +36,13 @@ import { ExampleModule } from './domain/example/example.module'
         connection: {
           uri: configService.get('MARIADB_URI'),
         },
+      }),
+    }),
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: TConfigService) => ({
+        uri: configService.get('MONGODB_URI'),
       }),
     }),
 
